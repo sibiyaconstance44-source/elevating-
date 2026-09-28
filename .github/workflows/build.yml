@@ -1,0 +1,45 @@
+name: Build AAB
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Unzip project
+        run: |
+          unzip -o elevate.zip
+          rm elevate.zip
+          ls -la
+          if [ -d elevate ]; then
+            mv elevate/*. 2>/dev/null || true
+            mv elevate/.*. 2>/dev/null || true
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build || echo "build failed try other"
+          npx cap add android || true
+          npx cap sync android || true
+
+      - name: Build AAB
+        run: |
+          cd android
+          chmod +x gradlew
+         ./gradlew bundleRelease
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: elevate-aab
+          path: android/app/build/outputs/bundle/release/app-release.aab

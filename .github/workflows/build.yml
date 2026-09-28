@@ -5,7 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -o elevate.zip && rm elevate.zip && ls
+      - run: unzip -o elevate.zip && rm elevate.zip
+      - name: Fix ElevateLogo export bug
+        run: |
+          echo "Fixing Navbar import..."
+          sed -i 's/import { ElevateLogo }/import ElevateLogo/g' src/components/Navbar.tsx || true
+          sed -i 's/import {ElevateLogo}/import ElevateLogo/g' src/components/Navbar.tsx || true
+          # Also make ElevateLogo export both ways to be safe
+          grep -q "export { ElevateLogo }" src/components/ElevateLogo.tsx || echo "export { default as ElevateLogo } from './ElevateLogo';" >> src/components/ElevateLogo.tsx || true
+          grep -q "export const ElevateLogo" src/components/ElevateLogo.tsx || echo "export const ElevateLogo = (await import('./ElevateLogo')).default;" >> src/components/ElevateLogo.tsx || true
+          cat src/components/Navbar.tsx | grep ElevateLogo
       - uses: actions/setup-node@v4
         with:
           node-version: 20

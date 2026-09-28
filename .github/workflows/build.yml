@@ -6,7 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Unzip project
-        run: unzip -o elevate.zip -d. || unzip -o./elevate.zip -d.
+        run: |
+          unzip -o elevate.zip
+          ls -la
+          ls -la elevate || true
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -17,14 +20,19 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Install deps
-        run: npm install
+        run: |
+          if [ -d "elevate" ]; then cd elevate; fi
+          npm install
       - name: Build AAB
         run: |
+          if [ -d "elevate" ]; then cd elevate; fi
           cd android
           chmod +x gradlew
-      
+         ./gradlew bundleRelease
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: android/app/build/outputs/bundle/release/*.aab
+          path: |
+            android/app/build/outputs/bundle/release/*.aab
+            elevate/android/app/build/outputs/bundle/release/*.aab

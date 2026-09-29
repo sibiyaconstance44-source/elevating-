@@ -1,0 +1,77 @@
+{
+  "name": "Elevate - CAPS Learning App",
+  "short_name": "Elevate",
+  "description": "South Africa's premier CAPS learning platform with Ms Elevate AI tutor, Grade R-12 curriculum, Study Squads, and NSC past papers.",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1d4ed8",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot-mobile.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Elevate Mobile CAPS Learning & AI Tutor"
+    },
+    {
+      "src": "/screenshots/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Elevate Learning Platform for Grade R-12"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ms Elevate AI Tutor",
+      "short_name": "AI Tutor",
+      "description": "24/7 CAPS AI Homework & Exam Tutor",
+      "url": "/?tab=tutor",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "NSC Past Exam Papers",
+      "short_name": "Past Papers",
+      "description": "Official DBE Past Exam Papers & Memos",
+      "url": "/?tab=papers",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

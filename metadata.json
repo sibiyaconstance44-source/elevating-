@@ -1,0 +1,6 @@
+{
+  "name": "Elevate",
+  "description": "Elevating Young Minds - South Africa's premier CAPS learning platform with Ms Elevate AI tutor, Grade R-3 Phonics & AI Voice Coach, WhatsApp-style Study Squads with PDF past paper sharing & AI scan solving, and NSC papers.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

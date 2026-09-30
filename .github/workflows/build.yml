@@ -19,6 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Make Gradlew Executable
+      run: chmod +x gradlew
+
     - name: Decode Keystore
       run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > release.jks
 
@@ -35,4 +38,3 @@ jobs:
       with:
         name: app-release-aab
         path: app/build/outputs/bundle/release/*.aab
-

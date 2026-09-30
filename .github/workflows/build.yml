@@ -38,3 +38,4 @@ jobs:
       with:
         name: app-release-aab
         path: app/build/outputs/bundle/release/*.aab
+
